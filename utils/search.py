@@ -46,11 +46,10 @@ def find_link_path(start_page, end_page, links, backlinks):
                     'title': link,
                     'parent': current_page
                 }
-                if link in backlinks:
-                    # temporary variable to declare path
-                    p = []
+                if link == end_page:
+                    p = []  # temporary variable to declare path
                     path = gen_path(graph, graph[link], p)
-                    return path.append(end_page)
+                    return path
             queue.append(graph[link])
 
 
