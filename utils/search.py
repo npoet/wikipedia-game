@@ -5,15 +5,13 @@
 from utils.links import *
 
 
-def find_link_path(start_page, end_page, links, backlinks):
-	""" Takes the return values of get_page_links and get_page_backlinks
-		from links.py and searches for a link path between the given pages
+def find_link_path(start_page, end_page):
+	""" Searches for a link path between the given pages, starting with direct links
+		and working towards an implementation of BFS
 
 	Args:
-		start_page (string):
-		end_page (string):
-		links (iterator object):
-		backlinks (iterator object):
+		start_page (string): title of desired start page
+		end_page (string): title of desired end page
 
 	Returns:
 		List of intermediary pages in order if they exist (starting with
@@ -21,12 +19,16 @@ def find_link_path(start_page, end_page, links, backlinks):
 		only end page for a direct link.
 	"""
 
+	start_page_links = get_page_links(start_page)
+
 	# first check for direct page links
-	if end_page in links:
+	if end_page in start_page_links:
 		return [start_page, end_page]
 
+	backlinks = get_page_backlinks(end_page)
+
 	# next check for single intermediary link using backlinks
-	for page in links:
+	for page in start_page_links:
 		if page in backlinks:
 			return [start_page, page, end_page]
 

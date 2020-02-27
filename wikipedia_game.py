@@ -11,13 +11,8 @@ def main():
     start_page = get_page_name(sys.argv[1])
     end_page = get_page_name(sys.argv[2])
 
-    # Get links and backlinks from given pages
-    start_page_links = get_page_links(start_page)
-    end_page_backlinks = get_page_backlinks(end_page)
-
     # Find page path
-    path = find_link_path(start_page, end_page,
-                          start_page_links, end_page_backlinks)
+    path = find_link_path(start_page, end_page)
 
     # Print required output
     print(f"{' -> '.join(path)}")

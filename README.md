@@ -34,5 +34,4 @@ are two or more page hops, it finds the full path with an implementation of BFS 
 It could be productive to implement a bidirectional search using both interwiki links and backlinks to enhance search 
 speed compared to traditional BFS (search time is currently quite slow for distantly related pages). Could also use any 
 number of public word association API's to check strongest possible links first, also likely saving compute time. 
-Additionally, backlinks could be searched only after checking for a direct link, to decrease search time for directly 
-linked pages.
+Additionally, try/except error handling for ```requests``` sessions may be useful.
