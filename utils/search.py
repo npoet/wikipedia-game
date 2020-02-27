@@ -19,12 +19,14 @@ def find_link_path(start_page, end_page):
 		only end page for a direct link.
 	"""
 
+	# find all links on start page
 	start_page_links = get_page_links(start_page)
 
 	# first check for direct page links
 	if end_page in start_page_links:
 		return [start_page, end_page]
 
+	# find all backlinks to end page
 	backlinks = get_page_backlinks(end_page)
 
 	# next check for single intermediary link using backlinks
