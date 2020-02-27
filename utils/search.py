@@ -47,9 +47,9 @@ def find_link_path(start_page, end_page, links, backlinks):
 					'parent': current_page
 				}
 				if link == end_page:
-					p = []  # temporary variable to declare path
+					p = []  			# temporary variable to declare path
 					path = gen_path(graph, graph[link], p)
-					path = path.reverse()	# path orignally started with end page
+					path.reverse()		# path originally started with end page
 					return path
 			queue.append(graph[link])
 
