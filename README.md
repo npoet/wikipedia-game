@@ -17,7 +17,7 @@
     
 #### Usage:
 
-This package can be run as a single script via wikipedia_game.py:
+This package can be run as a single script via wikipedia_game.py (after installing requirements):
 
 ```
 python3 wikipedia_game.py "{start_page}" "{end_page}"
