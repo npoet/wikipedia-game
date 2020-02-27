@@ -62,7 +62,7 @@ def get_page_links(req_page):
 			"titles": req_page,
 			"prop": "links",
 			"pllimit": 500,
-			'plcontinue': s.get(url=URL, params=params).json()['continue']['plcontinue']
+			"plcontinue": s.get(url=URL, params=params).json()['continue']['plcontinue']
 		}
 		req_next = s.get(url=URL, params=params).json()
 		return_data_next = req_next['query']['pages']
@@ -95,4 +95,18 @@ def get_page_backlinks(req_page):
 	return_data_init = req_init['query']['backlinks']
 	for link in return_data_init:
 		backlinks_list.append(link["title"])
+	# get remaining page links (if applicable)
+	while 'continue' in s.get(url=URL, params=params).json():
+		params = {
+			"action": "query",
+			"format": "json",
+			"list": "backlinks",
+			"bltitle": req_page,
+			"bllimit": 500,
+			"blcontinue": s.get(url=URL, params=params).json()['continue']['blcontinue']
+		}
+		req_next = s.get(url=URL, params=params).json()
+		return_data_next = req_next['query']['backlinks']
+		for link in return_data_next:
+			backlinks_list.append(link["title"])
 	return backlinks_list
